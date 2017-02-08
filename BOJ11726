@@ -1,0 +1,27 @@
+//baekjoon 11726
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	//ㅣ로 끝나는 길이 L(<=n)의 갯수 집합
+	int* Arr1 = new int[n + 1];
+	//ㅡ로 끝나는 길이 L(<=n)의 갯수 집합
+	int* Arr2 = new int[n + 1];
+	for (int i = 1; i <= n; i++) {
+		if (i == 1) {
+			Arr1[i] = 1;
+			Arr2[i] = 0;
+		}
+		else if (i == 2) {
+			Arr1[i] = 1;
+			Arr2[i] = 1;
+		}
+		else {
+			Arr1[i] = (Arr1[i - 1] + Arr2[i - 1])%10007;
+			Arr2[i] = (Arr1[i - 2] + Arr2[i - 2])%10007;
+		}
+	}
+	cout << (Arr1[n] + Arr2[n])%10007;
+}
